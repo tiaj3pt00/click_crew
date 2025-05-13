@@ -9,6 +9,11 @@ import mobile from "../assets/images/mob.webp";
 import cars from "../assets/images/cars.jpg";
 import service from "../assets/images/service.jpg";
 import about from "../assets/images/about.jpg";
+import fb from "../assets/images/fb.jpeg";
+import x from "../assets/images/x.jpg";
+import IG from "../assets/images/ig.jpg";
+import Linkedin from "../assets/images/link.jpg";
+import Youtube from "../assets/images/tube.png";
 
 const Home = () => {
   return (
@@ -18,119 +23,119 @@ const Home = () => {
         <p>Best Deals and Reviews on Products You Love!</p>
       </header>
 
-      {/* Carousel Section with Text */}
-      <section className="carousel-section mb-5">
-        <div
-          id="productCarousel"
-          className="carousel slide"
-          data-bs-ride="carousel"
-        >
-          <div className="carousel-indicators">
-            <button
-              type="button"
-              data-bs-target="#productCarousel"
-              data-bs-slide-to="0"
-              className="active"
-              aria-current="true"
-              aria-label="Slide 1"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#productCarousel"
-              data-bs-slide-to="1"
-              aria-label="Slide 2"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#productCarousel"
-              data-bs-slide-to="2"
-              aria-label="Slide 3"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#productCarousel"
-              data-bs-slide-to="3"
-              aria-label="Slide 4"
-            ></button>
-          </div>
-          <div className="carousel-inner">
-            {/* Slide 1 */}
-            <div className="carousel-item active">
-              <img
-                src={delivery}
-                className="d-block w-100"
-                alt="Fast Delivery"
-              />
-              <div className="carousel-caption d-none d-md-block">
-                <h3 className="bg-success">Fast Delivery</h3>
-                <p className="text-info">Get Delivered In No Time</p>
-              </div>
-            </div>
-
-            {/* Slide 2 */}
-            <div className="carousel-item">
-              <img src={mobile} className="d-block w-100" alt="Summer Sale" />
-              <div className="carousel-caption d-none d-md-block">
-                <h3 className="bg-success">Summer Sale</h3>
-                <p className="text-info">Up to 50% off on selected items</p>
-              </div>
-            </div>
-
-            {/* Slide 3 */}
-            <div className="carousel-item">
-              <img src={cars} className="d-block w-100" alt="New Arrivals" />
-              <div className="carousel-caption d-none d-md-block">
-                <h3 className="bg-success">New Arrivals</h3>
-                <p className="text-info">
-                  Be the first to get the hottest products of the season
-                </p>
-              </div>
-            </div>
-
-            {/* Slide 4 */}
-            <div className="carousel-item">
-              <img
-                src={service}
-                className="d-block w-100"
-                alt="Customer Service"
-              />
-              <div className="carousel-caption d-none d-md-block">
-                <h3 className="bg-success">Customer Service</h3>
-                <p className="text-info">
-                  Top-rated products loved by our community
-                </p>
-              </div>
-            </div>
-          </div>
-          <button
-            className="carousel-control-prev"
-            type="button"
-            data-bs-target="#productCarousel"
-            data-bs-slide="prev"
-          >
-            <span
-              className="carousel-control-prev-icon"
-              aria-hidden="true"
-            ></span>
-            <span className="visually-hidden">Previous</span>
-          </button>
-          <button
-            className="carousel-control-next"
-            type="button"
-            data-bs-target="#productCarousel"
-            data-bs-slide="next"
-          >
-            <span
-              className="carousel-control-next-icon"
-              aria-hidden="true"
-            ></span>
-            <span className="visually-hidden">Next</span>
-          </button>
+     <section className="carousel-section mb-5">
+  <div
+    id="productCarousel"
+    className="carousel slide"
+    data-bs-ride="carousel"
+    data-bs-interval="3000"
+  >
+    <div className="carousel-indicators">
+      <button
+        type="button"
+        data-bs-target="#productCarousel"
+        data-bs-slide-to="0"
+        className="active"
+        aria-current="true"
+        aria-label="Slide 1"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#productCarousel"
+        data-bs-slide-to="1"
+        aria-label="Slide 2"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#productCarousel"
+        data-bs-slide-to="2"
+        aria-label="Slide 3"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#productCarousel"
+        data-bs-slide-to="3"
+        aria-label="Slide 4"
+      ></button>
+    </div>
+    <div className="carousel-inner rounded-3 overflow-hidden shadow-lg">
+      {/* Slide 1 */}
+      <div className="carousel-item active">
+        <img
+          src={delivery}
+          className="d-block w-100 carousel-image"
+          alt="Fast Delivery"
+        />
+        <div className="carousel-caption d-none d-md-block">
+          <h3 className="bg-success p-2 rounded">Fast Delivery</h3>
+          <p className="text-white bg-dark bg-opacity-75 p-1 rounded">Get Delivered In No Time</p>
         </div>
-      </section>
+      </div>
 
-      {/* Rest of your component remains the same */}
-      {/* About Us Section */}
+      {/* Slide 2 */}
+      <div className="carousel-item">
+        <img src={mobile} className="d-block w-100 carousel-image" alt="Summer Sale" />
+        <div className="carousel-caption d-none d-md-block">
+          <h3 className="bg-success p-2 rounded">Summer Sale</h3>
+          <p className="text-white bg-dark bg-opacity-75 p-1 rounded">Up to 50% off on selected items</p>
+        </div>
+      </div>
+
+      {/* Slide 3 */}
+      <div className="carousel-item">
+        <img src={cars} className="d-block w-100 carousel-image" alt="New Arrivals" />
+        <div className="carousel-caption d-none d-md-block">
+          <h3 className="bg-success p-2 rounded">New Arrivals</h3>
+          <p className="text-white bg-dark bg-opacity-75 p-1 rounded">
+            Be the first to get the hottest products of the season
+          </p>
+        </div>
+      </div>
+
+      {/* Slide 4 */}
+      <div className="carousel-item">
+        <img
+          src={service}
+          className="d-block w-100 carousel-image"
+          alt="Customer Service"
+        />
+        <div className="carousel-caption d-none d-md-block">
+          <h3 className="bg-success p-2 rounded">Customer Service</h3>
+          <p className="text-white bg-dark bg-opacity-75 p-1 rounded">
+            Top-rated products loved by our community
+          </p>
+        </div>
+      </div>
+    </div>
+    <button
+      className="carousel-control-prev"
+      type="button"
+      data-bs-target="#productCarousel"
+      data-bs-slide="prev"
+    >
+      <span
+        className="carousel-control-prev-icon bg-dark bg-opacity-50 rounded p-3"
+        aria-hidden="true"
+      ></span>
+      <span className="visually-hidden">Previous</span>
+    </button>
+    <button
+      className="carousel-control-next"
+      type="button"
+      data-bs-target="#productCarousel"
+      data-bs-slide="next"
+    >
+      <span
+        className="carousel-control-next-icon bg-dark bg-opacity-50 rounded p-3"
+        aria-hidden="true"
+      ></span>
+      <span className="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  
+ 
+</section>
       <section className="about-section mb-5">
         <div className="row align-items-center">
           <div className="col-md-6">
@@ -199,8 +204,45 @@ const Home = () => {
         </div>
       </section>
 
-      <footer className="footer bg-success">
-        <p>&copy; 2025 CLICK-CREW. All Rights Reserved.</p>
+      <footer className="footer bg-success text-white py-5">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-6 mb-4">
+              <h4>Leave Us a Comment</h4>
+              <form>
+                <div className="mb-3">
+                  <textarea
+                    className="form-control"
+                    rows="3"
+                    placeholder="Your feedback is important to us!"
+                  ></textarea>
+                </div>
+                <button type="submit" className="btn btn-outline-light">
+                  Submit
+                </button>
+              </form>
+            </div>
+
+            <div className="col-md-6 mb-4">
+              <h4>Connect With Us</h4>
+              <div className="social-media d-flex gap-3 mb-3 flex-wrap">
+                <img src={fb} alt="facebook" className="social-icon" />
+                <img src={IG} alt="instagram" className="social-icon" />
+                <img src={x} alt="twitter" className="social-icon" />
+                <img src={Linkedin} alt="linkedin" className="social-icon" />
+                <img src={Youtube} alt="youtube" className="social-icon" />
+              </div>
+              <p>Email: info@click-crew.com</p>
+              <p>Phone: +254712345678</p>
+              <p>Address: Purshottam Place Fl 6 Westlands Rd Nairobi 00200 NBO KEN</p>
+            </div>
+          </div>
+
+          <div className="text-center mt-4 pt-3 border-top">
+            <p>&copy; 2025 CLICK-CREW. All Rights Reserved.</p>
+            <p className="mb-0">Privacy Policy | Terms of Service | Sitemap</p>
+          </div>
+        </div>
       </footer>
     </div>
   );

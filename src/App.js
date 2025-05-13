@@ -7,6 +7,8 @@ import "bootstrap/dist/css/bootstrap.css";
 import Home from './components/Home';
 import Products from './components/Products';
 import Payment from './components/Payment';
+import Cart from './components/Cart';
+import Upload from './components/Upload';
 
 function App() {
   return (
@@ -31,8 +33,14 @@ function App() {
           <Link to="/products" className="btn btn-outline-dark mx-2 px-5">
             Buy
           </Link>
+          <Link to="/Upload" className="btn btn-outline-dark mx-2 px-5">
+            Upload Product
+          </Link>
           <Link to="/" className="btn btn-outline-dark mx-2 px-5">
             Home
+          </Link>
+          <Link to="/cart" className="btn btn-outline-dark mx-2 px-5">
+            Orders
           </Link>
         </nav>
 
@@ -42,6 +50,8 @@ function App() {
           <Route path="/" Component={Home}></Route>
           <Route path="/products" Component={Products}></Route>
           <Route path="/payment" Component={Payment}></Route>
+          <Route path="/cart" Component={Cart}></Route>
+          <Route path="/Upload" Component={Upload}></Route>
         </Routes>
       </div>
     </Router>

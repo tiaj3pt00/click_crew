@@ -1,108 +1,156 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.js";
+import "../App.css";
+import { Button, Card } from "react-bootstrap";
 
-// Import local images
-import headphonesImg from "../assets/images/jbl.webp";
-import smartwatchImg from "../assets/images/watch1.jpg";
-import speakerImg from "../assets/images/speaker.jpg";
-import earbudsImg from "../assets/images/buds.webp";
-import tabletImg from "../assets/images/lenovo.jpg";
-import backpackImg from "../assets/images/laptop.webp";
+const Products = ({ addToCart }) => {
+  const [products, setProducts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-const Products = () => {
-  const [products] = useState([
-    {
-      id: 1,
-      name: "JBL Wireless Headphones",
-      price: "KES 5,000",
-      description: "Premium sound quality with noise cancellation",
-      image: headphonesImg,
-      rating: 4.5,
-      cost: '5000'
-    },
-    {
-      id: 2,
-      name: "Smart Watch",
-      price: "KES 3,000",
-      description: "Track your fitness and stay connected",
-      image: smartwatchImg,
-      rating: 4.2,
-      cost: '3000'
-    },
-    {
-      id: 3,
-      name: "Bluetooth Speaker",
-      price: "KES 2,500",
-      description: "Miatone Speaker with a 20 hr battery life",
-      image: speakerImg,
-      rating: 4.7,
-      cost: '2500'
-    },
-    {
-      id: 4,
-      name: "Wireless Earbuds",
-      price: "KES 1,400",
-      description: "Leaf Buds-True wireless earbuds with charging case",
-      image: earbudsImg,
-      rating: 4.3,
-      cost: '1400'
-    },
-    {
-      id: 5,
-      name: "Tablet",
-      price: "KES 13,400",
-      description: "Lenovo Tab-10-inch display with high resolution",
-      image: tabletImg,
-      rating: 4.1,
-      cost: '13400'
-    },
-    {
-      id: 6,
-      name: "WD-Laptop Backpack",
-      price: "KES 47,000",
-      description: "Durable and stylish backpack for professionals",
-      image: backpackImg,
-      rating: 4.4,
-      cost: '47000'
-    },
-  ]);
-
+  const img_url = "https://Mwangi10.pythonanywhere.com/static/images/";
   const navigate = useNavigate();
 
-  return (
-    <div className="products-page">
-      <header className="page-header">
-        <h1>Our Products</h1>
-        <p>Discover our premium selection of tech gadgets</p>
-      </header>
+  // Function to get products
+  const getProducts = async () => {
+    try {
+      setIsLoading(true);
+      const response = await axios.get(
+        "https://Mwangi10.pythonanywhere.com/api/get_products"
+      );
+      console.log("API Response:", response.data); // Debug
+      setProducts(response.data);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-      <div className="products-container">
-        {products.map((product) => (
-          <div key={product.id} className="product-card">
-            <div className="product-image">
-              <img src={product.image} alt={product.name} />
-              <span className="product-rating">{product.rating} ★</span>
-            </div>
-            <div className="product-info">
-              <h3>{product.name}</h3>
-              <p className="product-description">{product.description}</p>
-              <div className="product-footer">
-                <span className="product-price">{product.price}</span>
-                <button
-                  className="btn btn-success mt-2 w-100"
-                  onClick={() => navigate("/payment", { state: { product } })}
-                >
-                  Purchase Now
-                </button>
-              </div>
-            </div>
-          </div>
-        ))}
+  useEffect(() => {
+    getProducts();
+  }, []);
+
+  // Function to handle adding to cart with validation
+  const handleAddToCart = (product) => {
+    if (!product.product_id) {
+      console.error("Product is missing ID:", product);
+      return;
+    }
+
+    const cartItem = {
+      product_id: product.product_id,
+      product_name: product.product_name,
+      product_description: product.product_description,
+      product_cost: product.product_cost,
+      product_photo: product.product_photo,
+    };
+
+    console.log("Adding to cart:", cartItem); // Debug
+    addToCart(cartItem);
+  };
+
+  // Function to handle search
+  const filteredProducts = products.filter((product) =>
+    product.product_name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  if (isLoading) {
+    return (
+      <div className="container text-center mt-5">
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+        <p>Loading products...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="container alert alert-danger mt-5">
+        Error loading products: {error}
+      </div>
+    );
+  }
+
+  return (
+    <div className="container-fluid">
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h3>Products Available</h3>
+        <div style={{ width: "300px" }}>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search products..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
       </div>
 
-      <footer className="page-footer bg-success text-info">
-        <p>&copy; 2025 Tech Store. All rights reserved.</p>
-      </footer>
+      {filteredProducts.length === 0 ? (
+        <div className="alert alert-info text-center">
+          {searchTerm
+            ? "No products match your search."
+            : "No products available."}
+        </div>
+      ) : (
+        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
+          {filteredProducts.map((product) => (
+            <div className="col" key={product.product_id}>
+              <Card className="h-100 shadow-sm">
+                <div className="text-center p-3">
+                  <Card.Img
+                    variant="top"
+                    src={img_url + product.product_photo}
+                    className="img-fluid product-image"
+                    alt={product.product_name}
+                    style={{
+                      maxHeight: "200px",
+                      width: "auto",
+                      objectFit: "contain",
+                    }}
+                  />
+                </div>
+                <Card.Body className="d-flex flex-column">
+                  <Card.Title>{product.product_name}</Card.Title>
+                  <Card.Text className="text-muted small">
+                    {product.product_description}
+                  </Card.Text>
+                  <div className="mt-auto">
+                    <h5 className="text-primary mb-3">
+                      KSH {parseFloat(product.product_cost).toFixed(2)}
+                    </h5>
+                    <div className="d-grid gap-2">
+                      <Button
+                        variant="outline-dark"
+                        onClick={() => handleAddToCart(product)}
+                        className="mb-2"
+                      >
+                        Add to Cart 🛒
+                      </Button>
+                      <Button
+                        variant="outline-success"
+                        onClick={() =>
+                          navigate("/Payment", { state: { product } })
+                        }
+                      >
+                        Buy Now 💰
+                      </Button>
+                    </div>
+                  </div>
+                </Card.Body>
+              </Card>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
